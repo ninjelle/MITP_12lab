@@ -1,17 +1,7 @@
-from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey, Enum
+from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from app.core.database import Base
-import enum
-
-
-class ClientStatus(str, enum.Enum):
-    lead = "lead"
-    prospect = "prospect"
-    active = "active"
-    inactive = "inactive"
-    churned = "churned"
-
 
 class Client(Base):
     __tablename__ = "clients"
