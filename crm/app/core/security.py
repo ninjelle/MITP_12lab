@@ -34,7 +34,7 @@ def decode_token(token: str) -> dict:
         return payload
     except JWTError:
         raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
+            status_code=401,
             detail="Invalid or expired token",
             headers={"WWW-Authenticate": "Bearer"},
         )
