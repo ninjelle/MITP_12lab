@@ -1,8 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
-from sqlalchemy import func
 from typing import List, Optional, Dict
-from datetime import datetime
+from datetime import date
 from app.core.database import get_db
 from app.core.security import get_current_user
 from app.models.deal import Deal, STAGE_ORDER, STAGE_DEFAULT_PROBABILITY
