@@ -21,3 +21,4 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+# test AI review trigger
