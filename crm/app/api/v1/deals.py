@@ -69,8 +69,7 @@ def create_deal(
         raise HTTPException(status_code=403, detail="Viewers cannot create deals")
     deal_data = data.model_dump()
     if deal_data.get("stage") and deal_data.get("stage") in STAGE_DEFAULT_PROBABILITY:
-        if not deal_data.get("probability"):
-            deal_data["probability"] = STAGE_DEFAULT_PROBABILITY[deal_data["stage"]]
+        deal_data["probability"] = STAGE_DEFAULT_PROBABILITY[deal_data["stage"]]
     deal = Deal(**deal_data)
     if not deal.assigned_manager_id:
         deal.assigned_manager_id = current_user.id

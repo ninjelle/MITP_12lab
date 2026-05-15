@@ -103,9 +103,10 @@ class TestClients:
         assert resp.json()["company_name"] == "New Name"
 
     def test_delete_client_requires_admin(self):
-        manager_token = register_and_login("m@test.com", "pass123", "manager")
-        # First user is admin, register another
+        # First registered user becomes admin
         admin_token = register_and_login()
+        # Second user is manager
+        manager_token = register_and_login("m@test.com", "pass123", "manager")
         c = client.post("/api/v1/clients", json={"company_name": "ToDelete"}, headers=auth_header(admin_token)).json()
         # manager cannot delete
         resp = client.delete(f"/api/v1/clients/{c['id']}", headers=auth_header(manager_token))
