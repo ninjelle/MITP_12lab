@@ -1,14 +1,7 @@
-from sqlalchemy import Column, Integer, String, Boolean, DateTime, Enum
+from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from app.core.database import Base
-import enum
-
-
-class UserRole(str, enum.Enum):
-    admin = "admin"
-    manager = "manager"
-    viewer = "viewer"
 
 
 class User(Base):
@@ -26,4 +19,8 @@ class User(Base):
     # Relationships
     clients = relationship("Client", back_populates="assigned_manager")
     deals = relationship("Deal", back_populates="assigned_manager")
-    tasks = relationship("Task", back_populates="assigned_to")
+    tasks = relationship(
+        "Task",
+        foreign_keys="Task.assigned_to_id",
+        back_populates="assigned_to"
+    )
